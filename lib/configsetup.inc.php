@@ -232,7 +232,7 @@ return [
             'name' => 'picture[time_to_live]',
             'value' => $config['picture']['time_to_live'],
             'range_min' => 0,
-            'range_max' => 90,
+            'range_max' => 300,
             'range_step' => 1,
             'unit' => 'seconds',
         ],
@@ -878,6 +878,20 @@ return [
                 PathUtility::getAbsolutePath('resources/img/demo'),
                 PathUtility::getAbsolutePath('private/images/placeholder'),
             ]
+        ],
+	'param_capture_1' => [
+            'view' => 'expert',
+            'type' => 'input',
+            'placeholder' => $defaultConfig['collage']['param1'],
+            'name' => 'collage[param1]',
+            'value' => htmlentities($config['collage']['param1'] ?? ''),
+        ],
+        'param_capture_2' => [
+            'view' => 'expert',
+            'type' => 'input',
+            'placeholder' => $defaultConfig['collage']['param2'],
+            'name' => 'collage[param2]',
+            'value' => htmlentities($config['collage']['param2'] ?? ''),
         ],
         'textoncollage_enabled' => [
             'view' => 'advanced',

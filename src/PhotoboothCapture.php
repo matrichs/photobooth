@@ -13,6 +13,7 @@ class PhotoboothCapture
     public string $style;
     public string $fileName;
     public string $tmpFile;
+    public string $param = '';
     public string $collageSubFile;
     public int $collageNumber;
     public int $collageLimit;
@@ -103,13 +104,14 @@ class PhotoboothCapture
     {
         $this->logger->debug('Capture with CMD', [
             'cmd' => $this->captureCmd,
+	    'param' => $this->param,
             'tmpFile' => $this->tmpFile,
         ]);
         //gphoto must be executed in a dir with write permission for other commands we stay in the api dir
         if (substr($this->captureCmd, 0, strlen('gphoto')) === 'gphoto') {
             chdir(dirname($this->tmpFile));
         }
-        $cmd = sprintf($this->captureCmd, $this->tmpFile);
+        $cmd = sprintf($this->captureCmd, $this->param, $this->tmpFile);
         $cmd .= ' 2>&1'; //Redirect stderr to stdout, otherwise error messages get lost.
 
         exec($cmd, $output, $returnValue);

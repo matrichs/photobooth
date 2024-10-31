@@ -1499,6 +1499,8 @@ class PhotoboothConfiguration implements ConfigurationInterface
                         ->then(function (string $value): int { return intval($value); })
                         ->end()
                     ->end()
+                ->scalarNode('param1')->defaultValue('--ev -0.0')->end()
+                ->scalarNode('param2')->defaultValue('--ev -3.5')->end()
             ->end();
     }
 
