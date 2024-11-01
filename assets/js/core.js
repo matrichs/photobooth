@@ -269,15 +269,12 @@ const photoBooth = (function () {
                     labelElement.textContent = config.video.cheese;
                     element.appendChild(labelElement);
                 } else if (api.photoStyle === PhotoStyle.COLLAGE) {
-                    const labelElement = document.createElement('div');
-                    labelElement.classList.add('cheese-label');
-                    labelElement.textContent =
-                        photoboothTools.getTranslation('cheese') +
-                        ' ' +
-                        (api.nextCollageNumber + 1) +
-                        ' / ' +
-                        config.collage.limit;
-                    element.appendChild(labelElement);
+                    if ( api.nextCollageNumber == 0 ) {
+                        const labelElement = document.createElement('div');
+                        labelElement.classList.add('cheese-label');
+                        labelElement.textContent = photoboothTools.getTranslation('cheese');
+                        element.appendChild(labelElement);
+                    }
                 } else {
                     const labelElement = document.createElement('div');
                     labelElement.classList.add('cheese-label');
@@ -470,7 +467,9 @@ const photoBooth = (function () {
         if (config.commands.preview_kill && maxGetMediaRetry > 0) {
             maxGetMediaRetry = Math.max(countdownTime - parseInt(config.preview.stop_time, 10), 0);
         }
-        photoboothPreview.startVideo(CameraDisplayMode.COUNTDOWN, retry, maxGetMediaRetry);
+        if ( api.photoStyle !== PhotoStyle.COLLAGE  || api.nextCollageNumber == 0 ) {
+            photoboothPreview.startVideo(CameraDisplayMode.COUNTDOWN, retry, maxGetMediaRetry);
+        }
 
         if (
             config.preview.mode !== PreviewMode.NONE.valueOf() &&
@@ -515,7 +514,9 @@ const photoBooth = (function () {
             photoboothTools.getRequest(getUrl);
         }
 
-        await api.countdown.start(countdownTime);
+        if ( api.photoStyle !== PhotoStyle.COLLAGE  || api.nextCollageNumber == 0 ) {
+            await api.countdown.start(countdownTime);
+        }
         await api.cheese.start();
 
         if (config.preview.camTakesPic && !photoboothPreview.stream && !config.dev.demo_images) {
