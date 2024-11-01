@@ -43,7 +43,7 @@ try {
     switch ($_POST['style']) {
         case 'photo':
             $captureHandler->style = 'image';
-	    $captureHandler->param = $config['collage']['param1'];
+            $captureHandler->param = $config['collage']['param1'];
             break;
         case 'collage':
             if (!is_numeric($_POST['collageNumber'])) {
@@ -74,6 +74,7 @@ try {
             break;
         case 'custom':
             $captureHandler->style = 'image';
+            $captureHandler->param = $config['collage']['param2'];
             break;
         case 'video':
             $captureHandler->style = 'video';
