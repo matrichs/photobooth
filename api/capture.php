@@ -51,13 +51,12 @@ try {
             }
 
             $number = $_POST['collageNumber'] + 0;
-	    if ($number == 0) { // first is 0, second 1
-		$captureHandler->param = $config['collage']['param2'];
-	    }
-	    if ($number == 1) { // first is 0, second 1
-		$captureHandler->param = $config['collage']['param1'];
-	    }
-
+        if ($number == 0) { // first is 0, second 1
+        $captureHandler->param = $config['collage']['param2'];
+        }
+        if ($number == 1) { // first is 0, second 1
+        $captureHandler->param = $config['collage']['param1'];
+        }
 
             if ($number > $config['collage']['limit']) {
                 throw new \Exception('Collage consists only of ' . $config['collage']['limit'] . ' pictures');

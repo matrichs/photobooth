@@ -104,7 +104,7 @@ class PhotoboothCapture
     {
         $this->logger->debug('Capture with CMD', [
             'cmd' => $this->captureCmd,
-	    'param' => $this->param,
+        'param' => $this->param,
             'tmpFile' => $this->tmpFile,
         ]);
         //gphoto must be executed in a dir with write permission for other commands we stay in the api dir

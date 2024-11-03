@@ -879,7 +879,7 @@ return [
                 PathUtility::getAbsolutePath('private/images/placeholder'),
             ]
         ],
-	'param_capture_1' => [
+        'param_capture_1' => [
             'view' => 'expert',
             'type' => 'input',
             'placeholder' => $defaultConfig['collage']['param1'],
